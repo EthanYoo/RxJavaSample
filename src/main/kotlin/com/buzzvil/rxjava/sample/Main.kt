@@ -1,8 +1,10 @@
+package com.buzzvil.rxjava.sample
+
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
 fun main(args: Array<String>) {
-    println("kotlin main start")
+    println("kotlin com.buzzvil.rxjava.sample.main start")
 
     userlist().subscribeOn(Schedulers.io())
             .observeOn(Schedulers.single())
