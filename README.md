@@ -8,8 +8,8 @@ RxJava Sample Project
   * RxJava를 활용한 리액티브 프로그래밍 : 문법 공부하고 그 다음 보면 좋을 책. 추천
 
 * ## Website
-* http://reactivex.io
-* https://github.com/ReactiveX/RxJava
-* https://github.com/ReactiveX/RxJava/wiki
+  * http://reactivex.io
+  * https://github.com/ReactiveX/RxJava
+  * https://github.com/ReactiveX/RxJava/wiki
 
 * ## Youtube
