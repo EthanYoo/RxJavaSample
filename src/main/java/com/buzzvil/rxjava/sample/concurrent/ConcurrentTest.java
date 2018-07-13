@@ -14,7 +14,7 @@ public class ConcurrentTest {
         ConcurrentTest concurrentTest = new ConcurrentTest();
 
         if (async) {
-            concurrentTest.startAsyn();
+            concurrentTest.startAsync();
         } else {
             concurrentTest.start();
         }
@@ -39,8 +39,8 @@ public class ConcurrentTest {
                 .subscribe(System.out::println);
     }
 
-    public void startAsyn() {
-        getTokenAsyn()
+    public void startAsync() {
+        getTokenAsync()
                 .flatMap(token -> Observable.zip(
                         getBigDataAsync(token),
                         getSmallDataAsync(token),
@@ -58,7 +58,7 @@ public class ConcurrentTest {
         });
     }
 
-    public Observable<Token> getTokenAsyn() {
+    public Observable<Token> getTokenAsync() {
         return Observable
                 .defer(this::getToken)
                 .subscribeOn(Schedulers.io());
