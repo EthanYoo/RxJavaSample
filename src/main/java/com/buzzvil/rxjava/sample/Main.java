@@ -10,7 +10,7 @@ public class Main {
 
         getUser()
                 .filter(user -> user.getAge() > 1)
-                .map(user -> user.getAge())
+                .map(user -> user.getName())
                 .subscribe(System.out::println);
 
         System.out.println("End");
