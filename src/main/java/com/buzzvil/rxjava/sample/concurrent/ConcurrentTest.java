@@ -46,7 +46,7 @@ public class ConcurrentTest {
                         getSmallDataAsync(token),
                         (bigData, smallData) -> bigData.toString() + " | " + smallData.toString()))
                 .observeOn(Schedulers.single())
-                .subscribe(System.out::println);
+                .subscribe(System.out::println, System.out::println);
     }
 
     public Observable<Token> getToken() {
@@ -67,9 +67,15 @@ public class ConcurrentTest {
     public Observable<BigData> getBigData(Token token) {
         return Observable.create(emitter -> {
             System.out.println("ConcurrentTest.getBigData");
-            Thread.sleep(2000);
-            emitter.onNext(new BigData("BigData.a." + token, 6));
-            emitter.onComplete();
+            try {
+                Thread.sleep(2000);
+                emitter.onNext(new BigData("BigData.a." + token, 6));
+                emitter.onComplete();
+            } catch (InterruptedException ex) {
+                System.out.println(ex.getMessage());
+            } catch (Exception ex) {
+                emitter.onError(new Exception("getBigData"));
+            }
         });
     }
 
@@ -82,9 +88,15 @@ public class ConcurrentTest {
     public Observable<SmallData> getSmallData(Token token) {
         return Observable.create(emitter -> {
             System.out.println("ConcurrentTest.getSmallData");
-            Thread.sleep(1000);
-            emitter.onNext(new SmallData("SmallData.b." + token, 1));
-            emitter.onComplete();
+            try {
+                Thread.sleep(1000);
+                emitter.onNext(new SmallData("SmallData.b." + token, 1));
+                emitter.onComplete();
+            } catch (InterruptedException ex) {
+                System.out.println(ex.getMessage());
+            }  catch (Exception ex) {
+                emitter.onError(new Exception("getSmallData"));
+            }
         });
     }
 
