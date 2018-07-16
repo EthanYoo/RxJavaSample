@@ -1,7 +1,6 @@
 package com.buzzvil.rxjava.sample
 
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 
 fun main(args: Array<String>) {
     println("Start")
